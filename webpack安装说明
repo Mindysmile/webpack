@@ -1,0 +1,61 @@
+------------用到的：npm  atom文本代码编辑器   
+mkdir 文件夹名字（mindysmile） 
+cd   mindysmile
+npm init
+直接敲回车---最后选择yes
+npm install webpack --save-dev
+------等待安装------
+生成两个文件  node_modules 和  package.json
+1.  atom ./  用编辑器打开当前目录 (webpack-test)  ||  2.也可以手动打开webpack-test文件
+在webpack-test上新建mindy.js文件
+----示例代码：function mindy(str){
+   alert(str);
+}-------
+webpack mindy.js(原本的名字) mindycom.js(打包后的名字)
+-----为了了解更透彻-----
+新建 hello.js
+----示例代码：function hello(){
+  return {
+    
+  }
+}------------
+把hello.js引入mindy.js
+----示例代码：在头部加上 require("./hello.js")
+require("./hello.js")
+function mindy(str){
+   alert(str);
+}-------
+再次运行 webpack mindy.js(原本的名字)  mindycom.js(打包后的名字)
+打包完成，会有两个模块 mindy.js 和hello.js
+
+
+
+----------------------------------------Webpack 如何处理css文件----------------------------------------
+新建style.css
+----示例代码：html,body{
+  padding:0;
+  margin:0;
+}----------
+在mindy.js里面引入require style.css文件
+----示例代码：在头部加上 require("./style.css")
+require('./hello.js')
+require("./style.css")
+function mindy(str){
+   alert(str);
+}-------------
+运行命令行报错，webpack mindy.js(原本的名字)  mindycom.js(打包后的名字)，如何修正
+-------------安装loader-----------
+npm install css-loader style-loader --save-dev
+把mindy.js中的require(“./style.css”) 改成require(“css-loader!./style.css”)
+运行命令行webpack mindy.js(原本的名字)  mindycom.js(打包后的名字) 打包完成
+-----------------------------------------Webpack 如何处理css文件问题解决---------------------------------
+
+进一步了解：
+新建index.html文件 并且引入打包好的mindycom.js
+-----示例代码：  <script type="text/javascript" src="mindycom.js"></script>
+在mindy.js中添加代码mindy("welcome to visit  my github");
+运行命令行webpack mindy.js(原本的名字)  mindycom.js(打包后的名字) 
+在文件夹中打开index.html
+出现弹出框----
+
+
